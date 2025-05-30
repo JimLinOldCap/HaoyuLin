@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeshi Ethiopian Restaurant</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+  background-image: url('BG2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    position: relative;
+  }
+  header input[type="search"] {
+    background-color: #79D07A;
+    width: 50%;
+    padding: 20px;
+    border: 4px solid black;
+    border-radius: 10px;
+  }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    gap: 10px;
+    margin: 10px;
+  }
+  .slider {
+  height: 700px;
+  background-image: url('Frame1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  }
+  .slider-content {
+    text-align: center;
+    padding: 20px;
+  }
+  .slider-content h1 {
+    color: red;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+  .slider-content p {
+    color: orange;
+    font-size: 1em;
+  }
+  .slider-nav {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: orange;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+  }
+  nav.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffb400;
+    border-radius: 8px;
+  }
+  nav.sidebar button {
+  width: 10px;
+  height: 80px;
+  font-size: 24px;
+  background-color:transparent;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  }
+
+  section.links {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  background-color: rgba(198, 227, 195, 0.9);
+  padding: 10px;
+}
+
+  section.links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    color: #000;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <input type="search" placeholder="Search...">
+</header>
+
+<main>
+  <div class="slider">
+    <div class="slider-content">
+      <h1>Welcome to Yeshi Ethiopian Restaurant!</h1>
+      <p>Order Now for Up to 25% Discount</p>
+    </div>
+    <div class="slider-nav">></div>
+  </div>
+  
+  <nav class="sidebar">
+    <button class="icon-home" title="Home"><img src="home 2.png" alt="Home" style="width: 50px; height: 50px;"></button>
+    <button class="icon-cart" title="Cart"><img src="cart 3.png" alt="Cart" style="width: 80px; height: 80px;"></button>
+    <button class="icon-menu" title="Menu"><img src="menu 2.png" alt="Menu" style="width: 40px; height: 40px;"></button>
+    <button class="icon-mask" title="Mask"><img src="mask 2.png" alt="Mask" style="width: 80px; height: 80px;"></button>
+  </nav>
+</main>
+
+
+
+<section class="links">
+  <a href="#">Menu</a>
+  <a href="#">Story</a>
+  <a href="#">Sign In</a>
+  <a href="#">Shopping Cart</a>
+</section>
+
+<script>
+  // 简单的轮播切换示例
+  document.querySelector('.slider-nav').addEventListener('click', function() {
+    alert('Slider navigation clicked');
+  });
+</script>
+
+</body>
+</html>
+
