@@ -42,15 +42,30 @@
   .slider-nav {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: -20px;
     transform: translateY(-50%);
-    background-color: orange;
-    width: 30px;
-    height: 30px;
+    background-image: url(arrow_right.png);
+    background-size: cover;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
+  }
+
+  .slider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  }
+
+  .slider img {
+  align-items: center;
+  width: 1000px;
+  height: auto;
+  border-radius: 8px;
   }
 
   nav.sidebar {
@@ -150,6 +165,7 @@ nav.sidebar button img {
     color: #000;
     font-weight: bold;
   }
+
 </style>
 </head>
 <body>
@@ -160,7 +176,38 @@ nav.sidebar button img {
   </datalist>
 </header>
 
+<div class="slider">
+  <img src="scrolling pic1.png" class="slider-image" style="display: block;">
+  <img src="scrolling pic2.png" class="slider-image" style="display: none;">
+  <img src="scrolling pic3.png" class="slider-image" style="display: none;">
+  <div class="slider-nav"></div>
+</div>
 
+<script>
+  const images = document.querySelectorAll('.slider-image');
+  let currentIndex = 0;
+
+  document.querySelector('.slider-nav').addEventListener('click', function() {
+    // hide pic
+    images[currentIndex].style.display = 'none';
+    
+    // renew
+    currentIndex = (currentIndex + 1) % images.length;
+    
+    // display new pic
+    images[currentIndex].style.display = 'block';
+  });
+  
+  const nextSlide = () => {
+    images[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = 'block';
+  };
+  
+  setInterval(nextSlide, 4000);
+</script>
+
+<!-- Searching tool for memorizing the user's choices or taping words and return to suggestion bar -->
 <script>
   const select = document.getElementById('searchCategory');
   const searchInput = document.getElementById('searchInput');
@@ -184,16 +231,7 @@ nav.sidebar button img {
   });
 </script>
 
-<main>
-  <div class="slider">
-    <div class="slider-content">
-      <h1>test</h1>
-      <p>Order Now for Up to 25% Discount</p>
-    </div>
-    <div class="slider-nav">></div>
-  </div>
-  
-
+<!-- sidebar icon image -->
   <nav class="sidebar">
     <button class="sidebar-toggle">
     <img src="arrow.png" alt="Toggle" class="arrow-icon">
@@ -226,13 +264,8 @@ nav.sidebar button img {
 </nav>
 </main>
 
-<div class="slider">
-  <img src="scrolling pic1.png" class="slider-image" style="display: block;">
-  <img src="scrolling pic2.png" class="slider-image" style="display: none;">
-  <img src="scrolling pic3.png" class="slider-image" style="display: none;">
-  <div class="slider-nav">></div>
-</div>
 
+<!-- sidebar links -->
 <section class="links">
   <a href="#">Menu</a>
   <a href="#">Story</a>
@@ -242,4 +275,3 @@ nav.sidebar button img {
 
 </body>
 </html>
-
