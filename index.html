@@ -12,9 +12,9 @@
   }
   body {
   background-image: url('BG2.png');
-  background-size: cover;
-  background-position: center;
+  background-size: 100%;
   background-repeat: no-repeat;
+
   }
   header {
     display: flex;
@@ -29,36 +29,16 @@
     padding: 20px;
     border: 4px solid black;
     border-radius: 10px;
+    font-size:16px;
   }
+
   main {
     display: grid;
     grid-template-columns: 1fr 50px;
     gap: 10px;
     margin: 10px;
   }
-  .slider {
-  height: 700px;
-  background-image: url('Frame1.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  }
-  .slider-content {
-    text-align: center;
-    padding: 20px;
-  }
-  .slider-content h1 {
-    color: red;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  .slider-content p {
-    color: orange;
-    font-size: 1em;
-  }
+
   .slider-nav {
     position: absolute;
     top: 50%;
@@ -72,26 +52,79 @@
     line-height: 30px;
     cursor: pointer;
   }
+
   nav.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffb400;
-    border-radius: 8px;
-  }
-  nav.sidebar button {
-  width: 10px;
+  position: fixed;
+  height: 300px;
+  width: 70px; 
+  top: 20%;
+  right: -60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffb400;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 20px;
+  transition: right 0.8s ease;
+}
+
+nav.sidebar:hover {
+  right: 0;
+}
+
+nav.sidebar button {
+  width: 80px;
   height: 80px;
-  font-size: 24px;
-  background-color:transparent;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+}
+
+nav.sidebar .sidebar-toggle {
+  position: absolute;
+  top: 40%;
+  left: -25px;
+  width: 30px;
+  height: 60px;
+  background-color: #ffb400;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001; 
+}
+
+nav.sidebar .sidebar-toggle img.arrow-icon {
+  background-color:transparent;
+  width: 250px;
+  height: 250px;
+}
+
+nav.sidebar button img {
+  width: 100%;
+  height: 100%;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+ nav.sidebar button.icon-menu{
+  width:40px;
+  height: 40px;
+ }
+
+ nav.sidebar button.icon-mask{
+  width: 100px;
+  height: 100px;
+ }
+ 
 
   section.links {
   position: fixed;
@@ -122,8 +155,34 @@
 <body>
 
 <header>
-  <input type="search" placeholder="Search...">
+  <input list="suggestions" type="search" placeholder="Search...">
+  <datalist id="suggestions">
+  </datalist>
 </header>
+
+
+<script>
+  const select = document.getElementById('searchCategory');
+  const searchInput = document.getElementById('searchInput');
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedCategory = localStorage.getItem('searchCategory');
+    const savedSearch = localStorage.getItem('searchText');
+
+    if (savedCategory) {
+      select.value = savedCategory;
+    }
+    if (savedSearch) {
+      searchInput.value = savedSearch;
+    }
+  });
+  select.addEventListener('change', () => {
+    localStorage.setItem('searchCategory', select.value);
+  });
+
+  searchInput.addEventListener('input', () => {
+    localStorage.setItem('searchText', searchInput.value);
+  });
+</script>
 
 <main>
   <div class="slider">
@@ -134,15 +193,45 @@
     <div class="slider-nav">></div>
   </div>
   
+
   <nav class="sidebar">
-    <button class="icon-home" title="Home"><img src="home 2.png" alt="Home" style="width: 50px; height: 50px;"></button>
-    <button class="icon-cart" title="Cart"><img src="cart 3.png" alt="Cart" style="width: 80px; height: 80px;"></button>
-    <button class="icon-menu" title="Menu"><img src="menu 2.png" alt="Menu" style="width: 40px; height: 40px;"></button>
-    <button class="icon-mask" title="Mask"><img src="mask 2.png" alt="Mask" style="width: 80px; height: 80px;"></button>
-  </nav>
+    <button class="sidebar-toggle">
+    <img src="arrow.png" alt="Toggle" class="arrow-icon">
+    </button>
+
+  <button class="icon-home" title="Home">
+
+    <img src="home 2.png" alt="Home">
+
+  </button>
+
+  <button class="icon-cart" title="Cart">
+
+    <img src="cart 3.png" alt="Cart">
+
+  </button>
+
+  <button class="icon-menu" title="Menu">
+
+    <img src="menu 2.png" alt="Menu">
+
+  </button>
+
+  <button class="icon-mask" title="Mask">
+
+    <img src="mask 2.png" alt="Mask">
+
+  </button>
+
+</nav>
 </main>
 
-
+<div class="slider">
+  <img src="scrolling pic1.png" class="slider-image" style="display: block;">
+  <img src="scrolling pic2.png" class="slider-image" style="display: none;">
+  <img src="scrolling pic3.png" class="slider-image" style="display: none;">
+  <div class="slider-nav">></div>
+</div>
 
 <section class="links">
   <a href="#">Menu</a>
@@ -150,13 +239,6 @@
   <a href="#">Sign In</a>
   <a href="#">Shopping Cart</a>
 </section>
-
-<script>
-  // 简单的轮播切换示例
-  document.querySelector('.slider-nav').addEventListener('click', function() {
-    alert('Slider navigation clicked');
-  });
-</script>
 
 </body>
 </html>
