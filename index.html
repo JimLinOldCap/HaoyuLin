@@ -12,10 +12,28 @@
   }
   body {
   background-image: url('BG2.png');
-  background-size: 100%;
+  background-size: contain;
   background-repeat: no-repeat;
-
+  background-position: top center;
   }
+
+  .hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: vertical;
+  }
+
+  .site-header {
+  position:absolute;
+  z-index: 1000;
+  }
+
+  .logo {
+  width: 400px;
+  height: auto;
+  }
+  
   header {
     display: flex;
     align-items: center;
@@ -32,13 +50,6 @@
     font-size:16px;
   }
 
-  main {
-    display: grid;
-    grid-template-columns: 1fr 50px;
-    gap: 10px;
-    margin: 10px;
-  }
-
   .slider-nav {
     position: absolute;
     top: 50%;
@@ -52,226 +63,348 @@
   }
 
   .slider {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
-  .slider img {
-  align-items: center;
-  width: 1000px;
-  height: auto;
-  border-radius: 8px;
+  .slider-track {
+    display: flex;
+    transition: transform 0.8s ease;
   }
 
+  .slider-image {
+    width: 1000px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+  
+  .slider-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: rgb(11, 62, 1);
+  }
+  
   nav.sidebar {
-  position: fixed;
-  height: 300px;
-  width: 70px; 
-  top: 20%;
-  right: -60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffb400;
-  border-radius: 8px;
-  padding: 10px;
-  gap: 20px;
-  transition: right 0.8s ease;
-}
-
-nav.sidebar:hover {
-  right: 0;
-}
-
-nav.sidebar button {
-  width: 80px;
-  height: 80px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-
-}
-
-nav.sidebar .sidebar-toggle {
-  position: absolute;
-  top: 40%;
-  left: -25px;
-  width: 30px;
-  height: 60px;
-  background-color: #ffb400;
-  border-radius: 4px 0 0 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1001; 
-}
-
-nav.sidebar .sidebar-toggle img.arrow-icon {
-  background-color:transparent;
-  width: 250px;
-  height: 250px;
-}
-
-nav.sidebar button img {
-  width: 100%;
-  height: 100%;
-  max-width: 60px;
-  max-height: 60px;
-  object-fit: contain;
-}
-
- nav.sidebar button.icon-menu{
-  width:40px;
-  height: 40px;
- }
-
- nav.sidebar button.icon-mask{
-  width: 100px;
-  height: 100px;
- }
- 
-
-  section.links {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  background-color: rgba(198, 227, 195, 0.9);
-  padding: 10px;
-}
-
-  section.links a {
+    position: fixed;
+    height: 300px;
+    width: 70px; 
+    top: 20%;
+    right: -60px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    background-color: #fff;
+    background-color: #ffb400;
     border-radius: 8px;
     padding: 10px;
-    color: #000;
-    font-weight: bold;
+    gap: 20px;
+    transition: right 0.8s ease;
   }
+
+  nav.sidebar:hover {
+    right: 0;
+  }
+
+  nav.sidebar button {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  nav.sidebar .sidebar-toggle {
+    position: absolute;
+    top: 40%;
+    left: -25px;
+    width: 30px;
+    height: 60px;
+    background-color: #ffb400;
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001; 
+  }
+
+  nav.sidebar .sidebar-toggle img.arrow-icon {
+    background-color:transparent;
+    width: 250px;
+    height: 250px;
+  }
+
+  nav.sidebar button img {
+    width: 100%;
+    height: 100%;
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: contain;
+  }
+
+  nav.sidebar button.icon-menu{
+    width:40px;
+    height: 40px;
+  }
+
+  nav.sidebar button.icon-mask{
+    width: 100px;
+    height: 100px;
+  }
+  
+  .bottom-buttons {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.bottom-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bottom-btn img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.intro-section {
+  width: 100%;
+  background-color: #62acbc;
+  padding: 60px 0;
+  box-sizing: border-box;
+}
+
+.intro-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.intro-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.intro-text h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.intro-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.intro-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.intro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
 </style>
 </head>
 <body>
+<div class="hero-section">
+  <header class="site-header">
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
 
-<header>
-  <input list="suggestions" type="search" placeholder="Search...">
-  <datalist id="suggestions">
-  </datalist>
-</header>
+  <header>
+    <input list="suggestions" type="search" placeholder="Search...">
+    <datalist  atalist id="suggestions">
+    </datalist>
+  </header>
 
-<div class="slider">
-  <img src="scrolling pic1.png" class="slider-image" style="display: block;">
-  <img src="scrolling pic2.png" class="slider-image" style="display: none;">
-  <img src="scrolling pic3.png" class="slider-image" style="display: none;">
-  <div class="slider-nav"></div>
-</div>
+  <div class="slider">
+    <div class="slider-track">
+      <img src="scrolling pic1.png" class="slider-image">
+      <img src="scrolling pic2.png" class="slider-image">
+      <img src="scrolling pic3.png" class="slider-image">
+    </div>
+    <div class="slider-nav"></div>
+    <div class="slider-indicators">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
 
-<script>
-  const images = document.querySelectorAll('.slider-image');
-  let currentIndex = 0;
+  <script>
+    const track = document.querySelector('.slider-track');
+    const images = document.querySelectorAll('.slider-image');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
 
-  document.querySelector('.slider-nav').addEventListener('click', function() {
-    // hide pic
-    images[currentIndex].style.display = 'none';
-    
-    // renew
-    currentIndex = (currentIndex + 1) % images.length;
-    
-    // display new pic
-    images[currentIndex].style.display = 'block';
-  });
-  
-  const nextSlide = () => {
-    images[currentIndex].style.display = 'none';
-    currentIndex = (currentIndex + 1) % images.length;
-    images[currentIndex].style.display = 'block';
-  };
-  
-  setInterval(nextSlide, 4000);
-</script>
+    const goToSlide = (index) => {
+      const slideWidth = images[0].clientWidth;
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
 
-<!-- Searching tool for memorizing the user's choices or taping words and return to suggestion bar -->
-<script>
-  const select = document.getElementById('searchCategory');
-  const searchInput = document.getElementById('searchInput');
-  window.addEventListener('DOMContentLoaded', () => {
-    const savedCategory = localStorage.getItem('searchCategory');
-    const savedSearch = localStorage.getItem('searchText');
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    };
 
-    if (savedCategory) {
-      select.value = savedCategory;
-    }
-    if (savedSearch) {
-      searchInput.value = savedSearch;
-    }
-  });
-  select.addEventListener('change', () => {
-    localStorage.setItem('searchCategory', select.value);
-  });
+    goToSlide(0);
 
-  searchInput.addEventListener('input', () => {
-    localStorage.setItem('searchText', searchInput.value);
-  });
-</script>
+    document.querySelector('.slider-nav').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      goToSlide(currentIndex);
+    });
 
-<!-- sidebar icon image -->
-  <nav class="sidebar">
-    <button class="sidebar-toggle">
-    <img src="arrow.png" alt="Toggle" class="arrow-icon">
+    setTimeout(() => {
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        goToSlide(currentIndex);
+      }, 3000);
+    }, 3000);
+  </script>
+
+  <!-- Searching tool for memorizing the user's choices or taping words and return to suggestion bar -->
+  <script>
+    const select = document.getElementById('searchCategory');
+    const searchInput = document.getElementById('searchInput');
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedCategory = localStorage.getItem('searchCategory');
+      const savedSearch = localStorage.getItem('searchText');
+
+      if (savedCategory) {
+        select.value = savedCategory;
+      }
+      if (savedSearch) {
+        searchInput.value = savedSearch;
+      }
+    });
+    select.addEventListener('change', () => {
+      localStorage.setItem('searchCategory', select.value);
+    });
+
+    searchInput.addEventListener('input', () => {
+      localStorage.setItem('searchText', searchInput.value);
+    });
+  </script>
+
+  <!-- sidebar icon image -->
+    <nav class="sidebar">
+      <button class="sidebar-toggle">
+      <img src="arrow.png" alt="Toggle" class="arrow-icon">
+      </button>
+
+    <button class="icon-home" title="Home">
+      <img src="home 2.png" alt="Home">
     </button>
 
-  <button class="icon-home" title="Home">
+    <button class="icon-cart" title="Cart">
+      <img src="cart 3.png" alt="Cart">
+    </button>
 
-    <img src="home 2.png" alt="Home">
+    <button class="icon-menu" title="Menu">
+      <img src="menu 2.png" alt="Menu">
+    </button>
 
-  </button>
-
-  <button class="icon-cart" title="Cart">
-
-    <img src="cart 3.png" alt="Cart">
-
-  </button>
-
-  <button class="icon-menu" title="Menu">
-
-    <img src="menu 2.png" alt="Menu">
-
-  </button>
-
-  <button class="icon-mask" title="Mask">
-
-    <img src="mask 2.png" alt="Mask">
-
-  </button>
-
-</nav>
-</main>
+    <button class="icon-mask" title="Mask">
+      <img src="mask 2.png" alt="Mask">
+    </button>
+  </nav>
+  </main>
 
 
-<!-- sidebar links -->
-<section class="links">
-  <a href="#">Menu</a>
-  <a href="#">Story</a>
-  <a href="#">Sign In</a>
-  <a href="#">Shopping Cart</a>
+  <!-- bottom bar links -->
+  <selection class="bottom-buttons">
+    <button class="bottom-btn" title="Menu" onclick="location.href='Menu.html'">
+      <img src="Big menu.png" alt="Menu">
+    </button>
+    <button class="bottom-btn" title="Story">
+      <img src="big story.png" alt="Story">
+    </button>
+    <button class="bottom-btn" title="Sign In">
+      <img src="big sign in.png" alt="Sign In">
+    </button>
+    <button class="bottom-btn" title="Shopping Cart" onclick="location.href='Shopping Cart.html'">
+      <img src="big shopping cart.png" alt="Shopping Cart">
+    </button>
+  </selection>
+</div>
+
+<div class="divider">
+  <svg viewBox="0 0 1440 100" style="transform: rotate(180deg); display: block;">
+    <path fill="#62acbc" d="M0,0 C480,100 960,0 1440,100 L1440,0 L0,0 Z"></path>
+  </svg>
+</div>
+
+<section class="intro-section">
+  <div class="intro-content">
+    <div class="intro-text">
+      <h2>Vegetarian Dishes</h2>
+      <h2>Nothin' like you've had before</h2>
+      <p>Humbly yet proudly, we claim to have the most</p>
+      <p>exquisite mouth-watering dishes in the vegitarian</p>
+      <p>Most of our veggie dishes are cooked with onions</p>
+      <p>that are slowly carmelised in olive oil. Garlic and</p>
+      <p>ginger are a must.</p>
+    </div>
+    <div class="intro-img">
+      <img src="Intro img.png" alt="Ethiopian Dish">
+    </div>
+  </div>
 </section>
+
+
+
+<div id="footer-container"></div>
+
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    });
+</script>
 
 </body>
 </html>
