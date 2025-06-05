@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu</title>
+  <style>
+    body {
+      background-image: url('BG.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 400px;
+      height: auto;
+    }
+
+    .menu-section {
+      text-align: center;
+    }
+
+    .menu-title {
+      font-family:'Georgia';
+      font-size: 68px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 3px #000;
+      background: #a3832e;
+      display: inline-block;
+      padding: 3px 35px;
+      border-radius: 8px;
+      box-shadow: 5px 5px 0px #444;
+      margin-top: 50px;
+    }
+
+    .category {
+      margin-top: 50px;
+      text-align: left;
+      padding: 0 20px;
+    }
+
+    .category-title {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .category-line {
+      border: none;
+      height: 2px;
+      background-color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      width: 100px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-card {
+      width: 300px;
+      height: 350px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card:hover {
+      transform: scale(1.08);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-card-content {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-card-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .menu-card-desc {
+      font-size: 14px;
+      color: #444;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
+
+  <!-- cite search bar and side bar -->
+    <div id="searchbar-container"></div>
+    <div id="sidebar-container"></div>
+    <script>
+      fetch('search bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('searchbar-container').innerHTML = html);
+
+      fetch('side bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('sidebar-container').innerHTML = html);
+    </script>
+
+  <div class="menu-section">
+  <div class="menu-title">Menu</div>
+
+  <!-- Category: Entree -->
+  <div class="category">
+    <h2 class="category-title">Entree</h2>
+    <hr class="category-line" />
+    <div class="card-container">
+
+      <div class="menu-card">
+        <img src="Qimsha-Vegetarian.png" alt="Qimsha-Vegetarian">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Qimsha - Vegetarian</div>
+          <div class="menu-card-desc">A sample of Ethiopian popular vegetarian dishes - Lentil, Beetroot, Potatoe, Kale and Carrot.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="Qulett.png" alt="Qulett">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Qulett</div>
+          <div class="menu-card-desc">A pastry filled with sauteed mince meat sloe cooked with nitre kibbeh</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="Qimsha(Beef Entree).png" alt="Qimsha(Beef Entree)">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Qimsha (Beef Entree)</div>
+          <div class="menu-card-desc">A sample of Ethiopian popular dishes - Kitfo (Meat), Ayeb (Cottage Cheese) and Kale</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Category: Main Dishes -->
+  <div class="category">
+    <h2 class="category-title">Main Dishes</h2>
+    <hr class="category-line" />
+    <div class="card-container">
+
+      <div class="menu-card">
+        <img src="Special Kitfo.png" alt="Special Kitfo">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Special Kitfo</div>
+          <div class="menu-card-desc">Beef steak tartare seasoned with clarified butter(cottage cheese and finely minced collard green.)</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="Qey Wat.png" alt="Qey Wat">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Qey Wat</div>
+          <div class="menu-card-desc">Rich and satisfying slow-cooked beef stew in a spicy Berber with clarified butter and spices.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <div class="category">
+      <h2 class="category-title">Vegetarian/vegan dishes</h2>
+      <hr class="category-line" />
+      <div class="card-container">
+
+        <div class="menu-card">
+          <img src="Beyayenetu.png" alt="Beyayenetu">
+          <div class="menu-card-content">
+            <div class="menu-card-title">Beyayenetu</div>
+            <div class="menu-card-desc">Lentils, split lentils, split peas. beetroot, potato with kale, cabbage and salad.</div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <img src="Shero.png" alt="Shero">
+          <div class="menu-card-content">
+            <div class="menu-card-title">Shero</div>
+            <div class="menu-card-desc">Shero is a pea powder with a mixture of different types of herbs and spices.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2 class="category-title">Ethiopian Beer</h2>
+      <hr class="category-line" />
+      <div class="card-container">
+        <div class="menu-card">
+          <img src="Ethiopian Beer.png" alt="Ethiopian Beer">
+          <div class="menu-card-content">
+            <div class="menu-card-title">Ethiopian Beer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- cite footer -->
+<div id="footer-container"></div>
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    });
+  </script> 
+</body>
+</html>

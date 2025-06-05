@@ -1,0 +1,50 @@
+<style>
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  position: relative;
+}
+
+header input[type="search"] {
+  background-color: #79D07A;
+  width: 50%;
+  padding: 20px;
+  border: 4px solid black;
+  border-radius: 10px;
+  font-size: 16px;
+}
+</style>
+<header>
+  <input list="suggestions" id="searchInput" type="search" placeholder="Search...">
+  <datalist id="suggestions">
+  </datalist>
+</header>
+
+<script>
+  const select = document.getElementById('searchCategory');
+  const searchInput = document.getElementById('searchInput');
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedCategory = localStorage.getItem('searchCategory');
+    const savedSearch = localStorage.getItem('searchText');
+
+    if (savedCategory && select) {
+      select.value = savedCategory;
+    }
+    if (savedSearch) {
+      searchInput.value = savedSearch;
+    }
+  });
+
+  if (select) {
+    select.addEventListener('change', () => {
+      localStorage.setItem('searchCategory', select.value);
+    });
+  }
+
+  searchInput.addEventListener('input', () => {
+    localStorage.setItem('searchText', searchInput.value);
+  });
+</script>

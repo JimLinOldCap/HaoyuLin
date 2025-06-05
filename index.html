@@ -34,22 +34,6 @@
   height: auto;
   }
   
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    position: relative;
-  }
-  header input[type="search"] {
-    background-color: #79D07A;
-    width: 50%;
-    padding: 20px;
-    border: 4px solid black;
-    border-radius: 10px;
-    font-size:16px;
-  }
-
   .slider-nav-left{
     position: absolute;
     top: 50%;
@@ -118,78 +102,6 @@
 
   .dot.active {
     background-color: rgb(11, 62, 1);
-  }
-  
-  nav.sidebar {
-    position: fixed;
-    height: 300px;
-    width: 70px; 
-    top: 20%;
-    right: -60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffb400;
-    border-radius: 8px;
-    padding: 10px;
-    gap: 20px;
-    transition: right 0.8s ease;
-    z-index:1000;
-  }
-
-  nav.sidebar:hover {
-    right: 0;
-  }
-
-  nav.sidebar button {
-    width: 80px;
-    height: 80px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-  }
-
-  nav.sidebar .sidebar-toggle {
-    position: absolute;
-    top: 40%;
-    left: -25px;
-    width: 30px;
-    height: 60px;
-    background-color: #ffb400;
-    border-radius: 4px 0 0 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 100; 
-  }
-
-  nav.sidebar .sidebar-toggle img.arrow-icon {
-    background-color:transparent;
-    width: 250px;
-    height: 250px;
-  }
-
-  nav.sidebar button img {
-    width: 100%;
-    height: 100%;
-    max-width: 60px;
-    max-height: 60px;
-    object-fit: contain;
-  }
-
-  nav.sidebar button.icon-menu{
-    width:40px;
-    height: 40px;
-  }
-
-  nav.sidebar button.icon-mask{
-    width: 100px;
-    height: 100px;
   }
   
   .bottom-buttons {
@@ -286,12 +198,20 @@
     <img src="logo.png" alt="Logo" class="logo">
   </header>
 
-  <header>
-    <input list="suggestions" type="search" placeholder="Search...">
-    <datalist  atalist id="suggestions">
-    </datalist>
-  </header>
+  <!-- cite search bar and side bar -->
+    <div id="searchbar-container"></div>
+    <div id="sidebar-container"></div>
+    <script>
+      fetch('search bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('searchbar-container').innerHTML = html);
 
+      fetch('side bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('sidebar-container').innerHTML = html);
+    </script>
+
+  <!-- slider -->
   <div class="slider">
     <div class="slider-track">
       <img src="scrolling pic1.png" class="slider-image">
@@ -341,58 +261,9 @@
     }, 3000);
   </script>
 
-  <!-- Searching tool for memorizing the user's choices or taping words and return to suggestion bar -->
-  <script>
-    const select = document.getElementById('searchCategory');
-    const searchInput = document.getElementById('searchInput');
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedCategory = localStorage.getItem('searchCategory');
-      const savedSearch = localStorage.getItem('searchText');
-
-      if (savedCategory) {
-        select.value = savedCategory;
-      }
-      if (savedSearch) {
-        searchInput.value = savedSearch;
-      }
-    });
-    select.addEventListener('change', () => {
-      localStorage.setItem('searchCategory', select.value);
-    });
-
-    searchInput.addEventListener('input', () => {
-      localStorage.setItem('searchText', searchInput.value);
-    });
-  </script>
-
-  <!-- sidebar icon image -->
-    <nav class="sidebar">
-      <button class="sidebar-toggle">
-      <img src="arrow.png" alt="Toggle" class="arrow-icon">
-      </button>
-
-    <button class="icon-home" title="Home">
-      <img src="home 2.png" alt="Home">
-    </button>
-
-    <button class="icon-cart" title="Cart">
-      <img src="cart 3.png" alt="Cart">
-    </button>
-
-    <button class="icon-menu" title="Menu">
-      <img src="menu 2.png" alt="Menu">
-    </button>
-
-    <button class="icon-mask" title="Mask">
-      <img src="mask 2.png" alt="Mask">
-    </button>
-  </nav>
-  </main>
-
-
   <!-- bottom bar links -->
   <selection class="bottom-buttons">
-    <button class="bottom-btn" title="Menu" onclick="location.href='Menu.html'">
+    <button class="bottom-btn" title="Menu" onclick="location.href='menu.html'">
       <img src="Big menu.png" alt="Menu">
     </button>
     <button class="bottom-btn" title="Story">
@@ -434,10 +305,8 @@
   </div>
 </section>
 
-
-
+<!-- cite footer -->
 <div id="footer-container"></div>
-
 <script>
   fetch('footer.html')
     .then(response => response.text())
