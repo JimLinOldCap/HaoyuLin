@@ -4,11 +4,30 @@
   <meta charset="UTF-8">
   <title>Menu</title>
   <style>
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background-image: url('BG.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
+    }
+
+    .home-button {
+      position:absolute;
+      background-color:transparent;
+      color: white;
+      right: 325px;
+      z-index: 20;
+    }
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
     }
 
     .site-header {
@@ -31,12 +50,13 @@
       font-weight: bold;
       color: #fff;
       text-shadow: 2px 2px 3px #000;
+      -webkit-text-stroke: 2px rgb(253, 159, 9);
       background: #a3832e;
       display: inline-block;
       padding: 3px 35px;
       border-radius: 8px;
-      box-shadow: 5px 5px 0px #444;
-      margin-top: 50px;
+      box-shadow: 8px 8px 0px #444;
+      margin-top: 100px;
     }
 
     .category {
@@ -46,36 +66,52 @@
     }
 
     .category-title {
-      font-size: 28px;
+      font-size: 40px;
+      font-weight: bold;
       color: #fff;
-      margin-bottom: 5px;
-      text-shadow: 1px 1px 2px #000;
+      text-shadow: 5px 3px 3px #000;
+      padding-left: 25px;
+      -webkit-text-stroke: 1px rgb(17, 65, 1);
+    }
+
+    .category-desc {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 2px #000;
+      padding-left: 25px;
     }
 
     .category-line {
       border: none;
-      height: 2px;
+      height: 5px;
       background-color: #fff;
       margin-bottom: 20px;
       box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      width: 100px;
+      width: 500px;
+      margin: 25px;
+      margin-bottom: 20px;
     }
 
     .card-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(4, minmax(300px, 1fr));
+      justify-content: center;
+      gap: 100px;
+      padding: 20px;
     }
 
     .menu-card {
-      width: 300px;
-      height: 350px;
-      background-color: rgba(255, 255, 255, 0.95);
+      width: 400px;
+      height: 450px;
+      background: linear-gradient(rgb(251, 255, 0), rgba(255, 119, 0, 0.7));
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       display: flex;
       flex-direction: column;
+      border: 5px solid rgb(17, 80, 0);
+      transition: 0.3s;
     }
 
     .menu-card:hover {
@@ -84,7 +120,7 @@
 
     .menu-card img {
       width: 100%;
-      height: 200px;
+      height: 300px;
       object-fit: cover;
     }
 
@@ -97,12 +133,21 @@
     }
 
     .menu-card-title {
-      font-size: 22px;
+      font-family:'Georgia';
+      font-size: 30px;
       font-weight: bold;
       margin-bottom: 5px;
     }
 
+    .menu-card-price {
+      font-family:'Arial';
+      font-size: 16px;
+      font-weight: bold;
+      color: #696969;
+    }
+
     .menu-card-desc {
+      font-family:'Georgia';
       font-size: 14px;
       color: #444;
     }
@@ -110,6 +155,11 @@
   </style>
 </head>
 <body>
+
+  <a href="index.html" class="home-button">
+    <img src="home 2.png" alt="Home" class="home-icon">
+  </a>
+
   <header class="site-header">
     <img src="logo.png" alt="Logo" class="logo">
   </header>
@@ -134,12 +184,14 @@
   <div class="category">
     <h2 class="category-title">Entree</h2>
     <hr class="category-line" />
+    <p class="category-desc">Traditional Ethiopian cooking style. We bring traditional cooking style from back home to the liveable Melbourne.</p>
     <div class="card-container">
 
       <div class="menu-card">
         <img src="Qimsha-Vegetarian.png" alt="Qimsha-Vegetarian">
         <div class="menu-card-content">
           <div class="menu-card-title">Qimsha - Vegetarian</div>
+          <div class="menu-card-price">$18.50</div>
           <div class="menu-card-desc">A sample of Ethiopian popular vegetarian dishes - Lentil, Beetroot, Potatoe, Kale and Carrot.</div>
         </div>
       </div>
@@ -167,6 +219,7 @@
   <div class="category">
     <h2 class="category-title">Main Dishes</h2>
     <hr class="category-line" />
+    <p class="category-desc">Yeshi's Main Dishes are from vegan, Veggies and including meet lovers. We provides all traditional Ethiopian dishes.</p>
     <div class="card-container">
 
       <div class="menu-card">
@@ -189,33 +242,38 @@
   </div>
 </div>
 
-    <div class="category">
-      <h2 class="category-title">Vegetarian/vegan dishes</h2>
-      <hr class="category-line" />
-      <div class="card-container">
+<!-- Category: Vegetarian/vegan dishes -->
+  <div class="category">
+    <h2 class="category-title">Vegetarian/vegan dishes</h2>
+    <hr class="category-line" />
+    <p class="category-desc">lentils and all types of vegetarians comb are available in our menus.</p>
+    <div class="card-container">
 
-        <div class="menu-card">
-          <img src="Beyayenetu.png" alt="Beyayenetu">
-          <div class="menu-card-content">
-            <div class="menu-card-title">Beyayenetu</div>
-            <div class="menu-card-desc">Lentils, split lentils, split peas. beetroot, potato with kale, cabbage and salad.</div>
-          </div>
+      <div class="menu-card">
+        <img src="Beyayenetu.png" alt="Beyayenetu">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Beyayenetu</div>
+          <div class="menu-card-desc">Lentils, split lentils, split peas. beetroot, potato with kale, cabbage and salad.</div>
         </div>
+      </div>
 
-        <div class="menu-card">
-          <img src="Shero.png" alt="Shero">
-          <div class="menu-card-content">
-            <div class="menu-card-title">Shero</div>
-            <div class="menu-card-desc">Shero is a pea powder with a mixture of different types of herbs and spices.</div>
-          </div>
+      <div class="menu-card">
+        <img src="Shero.png" alt="Shero">
+        <div class="menu-card-content">
+          <div class="menu-card-title">Shero</div>
+          <div class="menu-card-desc">Shero is a pea powder with a mixture of different types of herbs and spices.</div>
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- Category: Ethiopian Beer -->
     <div class="category">
       <h2 class="category-title">Ethiopian Beer</h2>
       <hr class="category-line" />
+      <p class="category-desc">Ethiopian beer, Bedele, Walia and St George.</p>
       <div class="card-container">
+
         <div class="menu-card">
           <img src="Ethiopian Beer.png" alt="Ethiopian Beer">
           <div class="menu-card-content">
@@ -225,7 +283,7 @@
       </div>
     </div>
 
-  </div>
+</div>
   <!-- cite footer -->
 <div id="footer-container"></div>
 <script>
