@@ -199,16 +199,27 @@
   </header>
 
   <!-- cite search bar and side bar -->
-    <div id="searchbar-container"></div>
     <div id="sidebar-container"></div>
+    <script>
+      fetch('side bar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('sidebar-container').innerHTML = html);
+    </script>
+
+    <div id="searchbar-container"></div>
     <script>
       fetch('search bar.html')
         .then(res => res.text())
-        .then(html => document.getElementById('searchbar-container').innerHTML = html);
+        .then(html => {
+          document.getElementById('searchbar-container').innerHTML = html;
 
-      fetch('side bar.html')
-        .then(res => res.text())
-        .then(html => document.getElementById('sidebar-container').innerHTML = html);
+          const input = document.getElementById('searchInput');
+          if (input) {
+            input.addEventListener('focus', () => {
+              window.location.href = 'search.html';
+            });
+          }
+        });
     </script>
 
   <!-- slider -->

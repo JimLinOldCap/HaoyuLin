@@ -1,27 +1,28 @@
 <style>
-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90px;
-  position: relative;
-}
+    header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    position: relative;
+    }
 
-header input[type="search"] {
-  background-color: #79D07A;
-  width: 50%;
-  padding: 20px;
-  border: 4px solid black;
-  border-radius: 10px;
-  font-size: 16px;
-}
+    header input[type="search"] {
+    background-color: #79D07A;
+    width: 50%;
+    padding: 20px;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-size: 16px;
+    }
 </style>
+
 <header>
   <input list="suggestions" id="searchInput" type="search" placeholder="Search...">
-  <datalist id="suggestions">
-  </datalist>
+  <datalist id="suggestions"></datalist>
 </header>
 
+<!-- Searching tool for memorizing the user's choices or taping words and return to suggestion bar -->
 <script>
   const select = document.getElementById('searchCategory');
   const searchInput = document.getElementById('searchInput');

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-image: url(BG2.png);
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .tags span {
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 6px;
+      background-color: #79D07A;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .trend-box div {
+      padding: 12px;
+      margin: 8px 0;
+      background-color: #ffe4b5;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .query-box {
+      font-size: 18px;
+      margin-bottom: 30px;
+      background-color: #dff0d8;
+      padding: 12px;
+      border-left: 6px solid #4cae4c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Search Page</h1>
+
+  <div id="queryBox" class="query-box" style="display: none;"></div>
+
+  <div class="section">
+    <h2>Recent</h2>
+    <div class="tags">
+      <span>Samosa</span>
+      <span>Qulett</span>
+      <span>Qimsha</span>
+      <span>Q</span>
+    </div>
+  </div>
+
+  <!-- Trend -->
+  <div class="section">
+    <h2>Trend</h2>
+    <div class="trend-box">
+      <div>1. Qulett</div>
+      <div>2. Qey Wat</div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+
+    if (query) {
+      const queryBox = document.getElementById('queryBox');
+      queryBox.textContent = `You searched for: "${query}"`;
+      queryBox.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
