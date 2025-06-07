@@ -82,6 +82,18 @@
       border: 3px solid black;
     }
 
+    .product-info {
+      position: relative;
+      font-family: "LeagueSpartan-Bold";
+      max-width: 600px;
+      color: #fff;
+      padding: 30px;
+      padding-left: 50px;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(6px);
+    }
+
     .product-info h2 {
       font-family:"LeagueSpartan-Bold";
       font-size:48px;
@@ -102,6 +114,7 @@
       margin: 10px 0;
       font-family:"LeagueSpartan-Bold";
       font-size: 28px;
+      color:black;
       -webkit-text-stroke: 1px rgb(255, 255, 255);
     }
 
@@ -132,6 +145,7 @@
       padding-top: 5px;
       font-family: "LeagueSpartan-Bold";
       font-size: 24px;
+      -webkit-text-stroke: 1px rgb(0, 0, 0);
       margin-top: 10px;
     }
 
@@ -227,10 +241,23 @@
       cursor: pointer;
     }
 
+    .product-info {
+      position: relative;
+    }
+
+    .confirmation-wrapper {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
     .added-message {
       position: absolute;
-      left: 360px;
-      top: 810px;
+      left: -525px;
+      top: 675px;
       font-family:"LeagueSpartan-Bold";
       font-size:24px;
       background-color: #3a2400;
@@ -332,6 +359,7 @@
   </div>
 
   <div class="product-container">
+    
     <img class="product-image" src="Qey Wat.png" alt="Qey Wat">
 
     <div class="product-info">
@@ -360,9 +388,11 @@
         </div>
       </div>
 
+    <div class="confirmation-wrapper">
       <div id="confirmation" class="added-message">
         Item has been added to the cart
       </div>
+    </div>
 
       <div class="special-requests">
         <label>Special Requests</label><br>
