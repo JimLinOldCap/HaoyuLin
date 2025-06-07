@@ -131,10 +131,10 @@
     // name of food
     const menuItems = [
       {name: 'Qimsha - Vegetarian', image: 'Qimsha-Vegetarian.png'},
-      {name: 'Qulett', image: 'Qulett.png'},
+      {name: 'Qulett', image: 'Qulett.png', link: 'Qulett.html'},
       {name: 'Qimsha (Beef Entree)', image: 'Qimsha(Beef Entree).png'},
       {name: 'Special Kitfo', image: 'Special Kitfo.png'},
-      {name: 'Qey Wat', image: 'Qey Wat.png'},
+      {name: 'Qey Wat', image: 'Qey Wat.png', link: 'Qey Wat.html'},
       {name: 'Beyayenetu', image: 'Beyayenetu.png'},
       {name: 'Shero', image: 'Shero.png'},
       {name: 'Ethiopian Beer', image: 'Ethiopian Beer.png'},
@@ -165,6 +165,14 @@
           <img src="${item.image}" alt="${item.name}" style="width:100%; border-radius:6px;">
           <p>${item.name}</p>
         `;
+
+        if (item.link) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            window.location.href = item.link;
+          });
+        }
+
         grid.appendChild(card);
       });
 
