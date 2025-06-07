@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Result</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    .result-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px;
+    }
+
+    .category {
+      margin: 20px;
+    }
+
+    .category-title {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .item-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .item-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .item-card:hover {
+      transform: scale(1.05);
+    }
+
+    .bottom-buttons {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      background-color: #ffffff;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+
+    .bottom-btn img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-title" id="search-title"></div>
+
+  <div class="category" id="result-container">
+
+  <script>
+    // name of food
+    const menuItems = [
+      {name: 'Qimsha - Vegetarian', image: 'Qimsha-Vegetarian.png'},
+      {name: 'Qulett', image: 'Qulett.png'},
+      {name: 'Qimsha (Beef Entree)', image: 'Qimsha(Beef Entree).png'},
+      {name: 'Special Kitfo', image: 'Special Kitfo.png'},
+      {name: 'Qey Wat', image: 'Qey Wat.png'},
+      {name: 'Beyayenetu', image: 'Beyayenetu.png'},
+      {name: 'Shero', image: 'Shero.png'},
+      {name: 'Ethiopian Beer', image: 'Ethiopian Beer.png'},
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q')?.trim().toLowerCase() || '';
+
+    const title = document.getElementById('search-title');
+    const container = document.getElementById('result-container');
+
+    const matchedItems = menuItems.filter(item =>
+      item.name.toLowerCase().includes(query)
+    );
+
+    if (matchedItems.length === 0) {
+      title.textContent = `Your search on: "${query}" has no result.`;
+    } else {
+      title.textContent = `Your search on: "${query}"`;
+      const grid = document.createElement('div');
+      grid.className = 'item-grid';
+
+      matchedItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" style="width:100%; border-radius:6px;">
+          <p>${item.name}</p>
+        `;
+        grid.appendChild(card);
+      });
+
+      container.appendChild(grid);
+    }
+  </script>
+</body>
+</html>

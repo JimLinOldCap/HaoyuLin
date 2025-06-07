@@ -165,11 +165,44 @@
       <img src="home 2.png" alt="Home" class="home-icon">
     </a>
 
-    <input list="suggestions" id="searchInput" type="search" placeholder="Search...">
+    <input list="suggestions" id="searchInput" type="search" placeholder="What would you like?">
     <datalist id="suggestions"></datalist>
   </header>
 
-  <!-- cite search bar and side bar -->
+  <script>
+    const menuItems = ['Qimsha - Vegetarian', 'Qulett', 'Qimsha (Beef Entree)', 'Special Kitfo', 'Qey Wat','Beyayenetu', 'Shero', 'Ethiopian Beer'];
+
+    const datalist = document.getElementById('suggestions');
+
+    menuItems.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item;
+      datalist.appendChild(option);
+    });
+  </script>
+
+  <script>
+    function handleSearch() {
+      const input = document.getElementById('searchInput').value.trim();
+
+      if (input) {
+        const encodedQuery = encodeURIComponent(input);
+        window.location.href = `search result.html?q=${encodedQuery}`;
+      } else {
+        alert('What would you like?');
+      }
+    }
+  </script>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        handleSearch();
+      }
+    });
+  </script>
+
+  <!-- cite side bar -->
     <div id="sidebar-container"></div>
     <script>
       fetch('side bar.html')
@@ -187,12 +220,22 @@
     <div class="section">
       <h2 class="section-title recent-title">Recent</h2>
       <div class="tags-container">
-        <span class="tag">Samosa</span>
+        <span class="tag">Special Kitfo</span>
         <span class="tag">Qulett</span>
         <span class="tag">Qimsha</span>
         <span class="tag">Q</span>
       </div>
     </div>
+
+    <script>
+      document.querySelectorAll('.tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+          const keyword = tag.textContent.trim();
+          const encoded = encodeURIComponent(keyword);
+          window.location.href = `search result.html?q=${encoded}`;
+        });
+      });
+    </script>
 
     <!-- Trend -->
     <div class="section">
