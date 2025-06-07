@@ -4,9 +4,47 @@
   <meta charset="UTF-8">
   <title>Search Result</title>
   <style>
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height:100%;
+      width:100%;
+    }
+
     body {
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
+      background-image: url('BG.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+
+    .home-button {
+      position:absolute;
+      background-color:transparent;
+      right: 325px;
+      z-index: 20;
+    }
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 400px;
+      height: auto;
     }
 
     .result-title {
@@ -16,7 +54,8 @@
     }
 
     .category {
-      margin: 20px;
+      margin: 0;
+      padding: 20px 10px;
     }
 
     .category-title {
@@ -28,13 +67,16 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: flex-start;
     }
 
     .item-card {
-      background-color: white;
+      font-size:24px;
+      font-weight: bold;
+      background-color: rgba(255, 119, 0, 0.7);
       border-radius: 8px;
       padding: 10px;
-      width: 150px;
+      width: 300px;
       text-align: center;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
@@ -43,28 +85,47 @@
     .item-card:hover {
       transform: scale(1.05);
     }
-
-    .bottom-buttons {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      background-color: #ffffff;
-      padding: 10px 0;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    }
-
-    .bottom-btn img {
-      width: 40px;
-      height: 40px;
-    }
   </style>
 </head>
 <body>
+
+  <header class="site-header">
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
+
+  <a href="index.html" class="home-button">
+    <img src="home 2.png" alt="Home" class="home-icon">
+  </a>
+
+  <!-- cite search bar and side bar -->
+  <div id="sidebar-container"></div>
+  <script>
+      fetch('side bar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('sidebar-container').innerHTML = html);
+  </script>
+
+  <div id="searchbar-container"></div>
+  <script>
+      fetch('search bar.html')
+      .then(res => res.text())
+      .then(html => {
+          document.getElementById('searchbar-container').innerHTML = html;
+
+          const input = document.getElementById('searchInput');
+          if (input) {
+          input.addEventListener('focus', () => {
+              window.location.href = 'search.html';
+          });
+          }
+      });
+  </script>
+
   <div class="result-title" id="search-title"></div>
 
   <div class="category" id="result-container">
+
+    
 
   <script>
     // name of food
@@ -110,5 +171,18 @@
       container.appendChild(grid);
     }
   </script>
+
+<div style="height: 350px;"></div>
+
+<!-- cite footer -->
+<div id="footer-container"></div>
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    });
+</script> 
+
 </body>
 </html>

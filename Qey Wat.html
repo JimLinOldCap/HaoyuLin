@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Qey Wat - Product Page</title>
+  <style>
+
+    @font-face {
+      font-family: 'LeagueSpartan-Bold';
+      src: url('LeagueSpartan-Bold.otf') format('truetype');
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('BG.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+
+    .home-button {
+      position:absolute;
+      background-color:transparent;
+      right: 325px;
+      z-index: 20;
+    }
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 400px;
+      height: auto;
+    }
+
+    .back-button {
+      margin-left:250px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 20px;
+      display: inline-block;
+    }
+
+    .product-container {
+      display: flex;
+      padding: 20px;
+      gap: 30px;
+      padding-left:250px;
+    }
+
+    .product-image {
+      margin-left:250px;
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      border: 3px solid black;
+    }
+
+    .product-info h2 {
+      font-family:"LeagueSpartan-Bold";
+      font-size:48px;
+      color: #FCDD09;
+      -webkit-text-stroke: 1px rgb(17, 65, 1);
+      margin: 0;
+    }
+
+    .product-info p {
+      font-size:24px;
+      font-family:"LeagueSpartan-Bold";
+      max-width: 600px;
+      color: #fff;
+      -webkit-text-stroke: 1px rgb(17, 65, 1);
+    }
+
+    .price {
+      margin: 10px 0;
+      font-size: 24px;
+      -webkit-text-stroke: 1px rgb(17, 65, 1);
+    }
+
+    .quantity {
+      font-family:"LeagueSpartan-Bold";
+      color:black;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .quantity button {
+      background-color:rgb(0, 114, 0);
+      color:white;
+      font-size: 20px;
+      padding: 5px 10px;
+    }
+
+    .special-requests {
+      padding-top: 40px;
+      font-family: "LeagueSpartan-Bold";
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .special-requests textarea {
+      width: 300px;
+      height: 100px;
+    }
+
+    .add-btn, .edit-btn, .remove-btn {
+      margin-top: 15px;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .add-btn {
+      background-color: yellow;
+      color: green;
+      font-weight: bold;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .edit-btn, .remove-btn {
+      background-color: orange;
+      color: #fff;
+    }
+
+    .remove-btn {
+      background-color: brown;
+      margin-left: 10px;
+    }
+
+    .added-message {
+      background-color: #3a2400;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      width: fit-content;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+.more-section {
+  padding: 20px 250px;
+}
+
+.more-title {
+  font-family: 'LeagueSpartan-Bold';
+  font-size: 36px;
+  color: #FCDD09;
+  margin-bottom: 10px;
+  -webkit-text-stroke: 1px rgb(17, 65, 1);
+}
+
+.more-products {
+  display: flex;
+  gap: 20px;
+}
+
+.more-item {
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.more-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid black;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.more-item img:hover {
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
+
+  <a href="index.html" class="home-button">
+    <img src="home 2.png" alt="Home" class="home-icon">
+  </a>
+
+  <!-- cite search bar and side bar -->
+    <div id="sidebar-container"></div>
+    <script>
+      fetch('side bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('sidebar-container').innerHTML = html);
+    </script>
+
+    <div id="searchbar-container"></div>
+    <script>
+      fetch('search bar.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('searchbar-container').innerHTML = html;
+
+          const input = document.getElementById('searchInput');
+          if (input) {
+            input.addEventListener('focus', () => {
+              window.location.href = 'search.html';
+            });
+          }
+        });
+    </script>
+
+  <div class="back-button" onclick="history.back()">
+    <span class="back-arrow">←</span> 
+    <span class="back-text">Back</span>
+  </div>
+
+  <div class="product-container">
+    <img class="product-image" src="Qey Wat.png" alt="Qey Wat">
+
+    <div class="product-info">
+      <h2>Qey Wat</h2>
+      <p>Rich and satisfying slow-cooked beef stew in a spicy Berber with clarified butter and spices</p>
+      <div class="price">AUD$25</div>
+
+      <div class="quantity">
+        <button onclick="decrease()">−</button>
+        <span id="qty">1</span>
+        <button onclick="increase()">+</button>
+      </div>
+
+      <div id="buttons">
+        <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+      </div>
+
+      <div id="confirmation" class="added-message" style="display: none;">
+        Item has been added to the cart
+      </div>
+
+      <div class="special-requests">
+        <label>Special Requests</label><br>
+        <textarea></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let quantity = 1;
+
+    function increase() {
+      quantity++;
+      document.getElementById("qty").textContent = quantity;
+    }
+
+    function decrease() {
+      if (quantity > 1) {
+        quantity--;
+        document.getElementById("qty").textContent = quantity;
+      }
+    }
+
+    function addToCart() {
+      document.getElementById("buttons").innerHTML = `
+        <button class="edit-btn">Edit</button>
+        <button class="remove-btn" onclick="resetCart()">Remove</button>
+      `;
+      document.getElementById("confirmation").style.display = "block";
+    }
+
+    function resetCart() {
+      document.getElementById("buttons").innerHTML = `
+        <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+      `;
+      document.getElementById("confirmation").style.display = "none";
+    }
+  </script>
+
+  <div class="more-section">
+    <h3 class="more-title">More</h3>
+    <div class="more-products">
+      <button class="more-item" onclick="location.href='Qulett.html'">
+        <img src="Qulett.png" alt="Item 1">
+      </button>
+      <button class="more-item">
+        <img src="Qimsha(Beef Entree).png" alt="Item 2">
+      </button>
+    </div>
+  </div>
+
+  <div style="height: 250px;"></div>
+
+  <!-- cite footer -->
+  <div id="footer-container"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      });
+  </script> 
+
+</body>
+</html>
