@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yeshi Ethiopian Restaurant</title>
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   }
   body {
   background-image: url('BG2.png');
@@ -44,6 +47,8 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
   }
 
   .slider-nav-right{
@@ -56,6 +61,8 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
   }
 
   .slider {
@@ -66,8 +73,22 @@
     align-items: center;
     width: 100%;
     max-width: 1000px;
+    height: 465px;
     margin: 0 auto;
     border-radius: 8px;
+  }
+
+  .mySlides {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 2s ease;
+    width: 100%;
+    height: auto;
+  }
+
+  .mySlides.active {
+    opacity: 1;
+    z-index: 1;
   }
 
   .slider-track {
@@ -116,12 +137,18 @@
   transform: translateY(40px);
 }
 
-.bottom-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
+  .bottom-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .bottom-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 
 .bottom-btn img {
   width: 250px;
@@ -224,56 +251,62 @@
 
   <!-- slider -->
   <div class="slider">
-    <div class="slider-track">
+    <div class="mySlides fade">
       <img src="scrolling pic1.png" class="slider-image">
+    </div>
+    <div class="mySlides fade">
       <img src="scrolling pic2.png" class="slider-image">
+    </div>
+    <div class="mySlides fade">
       <img src="scrolling pic3.png" class="slider-image">
     </div>
-    <div class="slider-nav-left"></div>
-    <div class="slider-nav-right"></div>
+
+    <div class="slider-nav-left" onclick="changeSlide(-1)"></div>
+    <div class="slider-nav-right" onclick="changeSlide(1)"></div>
+
     <div class="slider-indicators">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
     </div>
   </div>
 
   <script>
-    const track = document.querySelector('.slider-track');
-    const images = document.querySelectorAll('.slider-image');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
+    let slideIndex = 1;
+    let timer = null;
 
-    const goToSlide = (index) => {
-      const slideWidth = images[0].clientWidth;
-      track.style.transform = `translateX(-${index * slideWidth}px)`;
+    function showSlides(n) {
+      const slides = document.getElementsByClassName("mySlides");
+      const dots = document.getElementsByClassName("dot");
 
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
-    };
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
 
-    goToSlide(0);
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
 
-    document.querySelector('.slider-nav-left').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    goToSlide(currentIndex);
-    });
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
 
-    document.querySelector('.slider-nav-right').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      goToSlide(currentIndex);
-    });
+      slides[slideIndex - 1].classList.add("active");
+      dots[slideIndex - 1].classList.add("active");
 
-    setTimeout(() => {
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        goToSlide(currentIndex);
-      }, 3000);
-    }, 3000);
-  </script>
+      clearTimeout(timer);
+      timer = setTimeout(() => changeSlide(1), 4000);
+    }
+    function changeSlide(n) {
+      showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    showSlides(slideIndex);
+    </script>
 
   <!-- bottom bar links -->
-  <selection class="bottom-buttons">
+  <section class="bottom-buttons">
     <button class="bottom-btn" title="Menu" onclick="location.href='menu.html'">
       <img src="Big menu.png" alt="Menu">
     </button>
@@ -286,7 +319,7 @@
     <button class="bottom-btn" title="Shopping Cart" onclick="location.href='Shopping Cart.html'">
       <img src="big shopping cart.png" alt="Shopping Cart">
     </button>
-  </selection>
+  </section>
 </div>
 
 <div class="divider">

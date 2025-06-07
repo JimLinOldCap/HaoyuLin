@@ -2,38 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Search Results</title>
+  <title>Search Page</title>
   <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
     body {
-      font-family: sans-serif;
-      background-image: url(BG2.png);
-      padding: 40px;
+      background-image: url('BG2.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
     }
 
-    h1 {
-      margin-bottom: 20px;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 90px;
+      position: relative;
+    }
+
+    header input[type="search"] {
+      background-color: #79D07A;
+      width: 50%;
+      padding: 20px;
+      border: 4px solid black;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .home-button {
+      position:absolute;
+      background-color:transparent;
+      color: white;
+      right: 325px;
+      z-index: 20;
+    }
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    @font-face {
+      font-family: 'LeagueSpartan-Bold';
+      src: url('LeagueSpartan-Bold.otf') format('truetype');
     }
 
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 80px;
     }
 
-    .tags span {
-      display: inline-block;
-      padding: 6px 12px;
-      margin: 6px;
+    .section-title {
+      font-family: 'LeagueSpartan-Bold';
+      font-size: 48px;
+      color:white;
+      -webkit-text-stroke:2px #034600;
+      margin-bottom: 30px;
+    }
+    
+    .recent-title {
+      margin-top:60px;
+      padding-left: 200px;
+    }
+
+    .trend-title {
+      padding-left: 200px;
+      margin-bottom:-10px;
+    }
+
+    .tags-container {
+      padding-left: 200px;
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
       background-color: #79D07A;
-      color: white;
+      color: rgb(0, 0, 0);
+      font-size: 24px;
+      padding: 8px 16px;
       border-radius: 8px;
       font-weight: bold;
+      font-family: 'LeagueSpartan-Bold';
+      display: inline-block;
+      border:5px solid #022400;
+      line-height: 1.2;
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     }
 
-    .trend-box div {
-      padding: 12px;
-      margin: 8px 0;
-      background-color: #ffe4b5;
-      border-radius: 6px;
+    .tag:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .trend-box {
+      display: flex;
+      gap: 50px;
+      padding-top:30px;
+      width:1000px;
+      height:250px;
+      background-color:transparent;
+      margin-left: 200px;
+    }
+
+    .trend-item {
+      width:250px;
+      height: 250px;
+      padding: 20px;
+      color: white;
       font-weight: bold;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: flex-end;
+      font-family:"Georgia";
+      font-size: 36px;
+      -webkit-text-stroke:1px black;
+      text-shadow: 2px 2px 2px black;
+      border: 5px solid #034600;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .trend-item:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .trend-item.qulett {
+      background-image: url('Qulett.png');
+    }
+
+    .trend-item.qeywat {
+      background-image: url('Qey Wat.png');
     }
 
     .query-box {
@@ -46,39 +159,69 @@
   </style>
 </head>
 <body>
+  <header>
 
-  <h1>Search Page</h1>
+    <a href="index.html" class="home-button">
+      <img src="home 2.png" alt="Home" class="home-icon">
+    </a>
 
-  <div id="queryBox" class="query-box" style="display: none;"></div>
+    <input list="suggestions" id="searchInput" type="search" placeholder="Search...">
+    <datalist id="suggestions"></datalist>
+  </header>
 
-  <div class="section">
-    <h2>Recent</h2>
-    <div class="tags">
-      <span>Samosa</span>
-      <span>Qulett</span>
-      <span>Qimsha</span>
-      <span>Q</span>
+  <!-- cite search bar and side bar -->
+    <div id="sidebar-container"></div>
+    <script>
+      fetch('side bar.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('sidebar-container').innerHTML = html);
+    </script>
+
+  <!-- result -->
+  <div id="resultArea">
+
+    <!-- key words -->
+    <div id="queryBox" class="query-box" style="display: none;"></div>
+
+    <!-- Recent  -->
+    <div class="section">
+      <h2 class="section-title recent-title">Recent</h2>
+      <div class="tags-container">
+        <span class="tag">Samosa</span>
+        <span class="tag">Qulett</span>
+        <span class="tag">Qimsha</span>
+        <span class="tag">Q</span>
+      </div>
     </div>
-  </div>
 
-  <!-- Trend -->
-  <div class="section">
-    <h2>Trend</h2>
-    <div class="trend-box">
-      <div>1. Qulett</div>
-      <div>2. Qey Wat</div>
+    <!-- Trend -->
+    <div class="section">
+      <h2 class="section-title trend-title">Trend</h2>
+      <div class="trend-box">
+        <div class="trend-item qulett">1. Qulett</div>
+        <div class="trend-item qeywat">2. Qey Wat</div>
+      </div>
     </div>
+
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const query = params.get("q");
+    const searchInput = document.getElementById('searchBox');
+    const queryBox = document.getElementById('queryBox');
+    const resultArea = document.getElementById('resultArea');
 
-    if (query) {
-      const queryBox = document.getElementById('queryBox');
-      queryBox.textContent = `You searched for: "${query}"`;
-      queryBox.style.display = 'block';
-    }
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+
+          queryBox.textContent = `You searched for: "${query}"`;
+          queryBox.style.display = 'block';
+
+          resultArea.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
   </script>
 
 </body>
