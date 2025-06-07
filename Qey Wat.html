@@ -417,12 +417,35 @@
     }
 
     function addToCart() {
+      const item = {
+        id: 'qeywat',
+        name: 'Qey Wat',
+        price: 25,
+        quantity: quantity,
+        img: 'Qey Wat.png'
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existing = cart.find(i => i.id === item.id);
+      if (existing) {
+        existing.quantity += item.quantity;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
       document.querySelector('.add-container').style.display = 'none';
       document.querySelector('.edit-remove-container').style.display = 'flex';
       document.getElementById('confirmation').style.visibility = 'visible';
     }
 
     function resetCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart = cart.filter(i => i.id !== 'qeywat');
+      localStorage.setItem("cart", JSON.stringify(cart));
+
       document.querySelector('.add-container').style.display = 'block';
       document.querySelector('.edit-remove-container').style.display = 'none';
       document.getElementById('confirmation').style.visibility = 'hidden';
