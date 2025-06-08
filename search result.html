@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Result</title>
-  <style>
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
       margin: 0;
       padding: 0;
-      height:100%;
-      width:100%;
+      height: 100%;
+      width: 100%;
     }
 
     body {
@@ -25,77 +25,140 @@
       background-position: top center;
     }
 
-    .home-button {
-      position:absolute;
-      background-color:transparent;
-      right: 325px;
-      z-index: 20;
-    }
-
-    .home-icon {
-      width: 80px;
-      height: 80px;
-    }
-
-    .site-header {
-      position: absolute;
-      z-index: 10;
+    .top-bar {
+      margin-top: -1vw;
+      margin-right: 12vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      width: 400px;
-      height: auto;
+      width: 20vw;
+      min-width: 120px;
+    }
+
+    .search-home-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.1vw;
+      flex-grow: 1;
+      justify-content: flex-start;
+    }
+
+    #searchbar-container {
+      flex-grow: 1;
+      min-width: 150px;
+    }
+
+    .home-button {
+      position:static;
+    }
+
+    .home-icon {
+      width: 4vw;
+      height: 4vw;
+      min-width: 36px;
+      min-height: 36px;
     }
 
     .result-title {
-      font-size: 24px;
+      font-size: 1.25vw;
       font-weight: bold;
-      margin: 30px;
+      margin: 1.56vw;
     }
 
     .category {
       margin: 0;
-      padding: 20px 10px;
+      padding: 1.04vw 0.52vw;
     }
 
     .category-title {
-      font-size: 22px;
-      margin-bottom: 10px;
+      font-size: 1.15vw;
+      margin-bottom: 0.52vw;
     }
 
     .item-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.52vw;
       align-items: flex-start;
     }
 
     .item-card {
-      font-size:24px;
+      font-size: 1.25vw;
       font-weight: bold;
       background-color: rgba(255, 119, 0, 0.7);
-      border-radius: 8px;
-      padding: 10px;
-      width: 300px;
+      border-radius: 0.42vw;
+      padding: 0.52vw;
+      width: 15.63vw;
       text-align: center;
-      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0.05vw 0.05vw 0.26vw rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
     }
 
     .item-card:hover {
       transform: scale(1.05);
     }
+
+    .item-card img {
+      width: 100%;
+      border-radius: 0.42vw;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo {
+        width: 40vw;
+        margin-bottom: 3vw;
+      }
+
+      .search-home-wrapper {
+        flex-direction: row;
+        width: 90vw;
+        justify-content: space-between;
+      }
+
+      #searchbar-container {
+        flex-grow: 1;
+      }
+
+      .home-icon {
+        width: 10vw;
+        height: 10vw;
+      }
+
+      .item-card {
+        width: 90vw;
+        font-size: 4vw;
+        padding: 3vw;
+      }
+      .item-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 2vw;
+      }
+
+    }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
+  <div class="top-bar">
     <img src="logo.png" alt="Logo" class="logo">
-  </header>
 
-  <a href="index.html" class="home-button">
-    <img src="home 2.png" alt="Home" class="home-icon">
-  </a>
+    <div class="search-home-wrapper">
+      <div id="searchbar-container"></div>
+      <a href="index.html" class="home-button">
+        <img src="home 2.png" alt="Home" class="home-icon">
+      </a>
+    </div>
+  </div>
 
   <!-- cite search bar and side bar -->
   <div id="sidebar-container"></div>
@@ -105,7 +168,6 @@
       .then(html => document.getElementById('sidebar-container').innerHTML = html);
   </script>
 
-  <div id="searchbar-container"></div>
   <script>
       fetch('search bar.html')
       .then(res => res.text())

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qulett - Product Page</title>
   <style>
 
@@ -13,11 +14,13 @@
     html, body {
       margin: 0;
       padding: 0;
+      
     }
 
     body {
       background-image: url('BG.png');
       background-size: cover;
+      margin-top:-1vw;
       background-repeat: no-repeat;
       background-position: top center;
     }
@@ -25,7 +28,7 @@
     .home-button {
       position:absolute;
       background-color:transparent;
-      right: 325px;
+      right: 16.93vw;
       z-index: 20;
     }
 
@@ -40,12 +43,12 @@
     }
 
     .logo {
-      width: 400px;
+      width: 325px;
       height: auto;
     }
 
     .back-button {
-      margin-left:250px;
+      margin-left: 13.02vw;
       font-weight: bold;
       cursor: pointer;
       display: inline-block;
@@ -70,16 +73,16 @@
     .product-container {
       display: flex;
       padding: 20px;
-      gap: 30px;
-      padding-left:250px;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5vw; 
+      padding-left: 5vw;
     }
 
     .product-image {
-      margin-left:10px;
-      width: 600px;
-      height: 600px;
+      width: 40vw;
+      height: 40vw;
       object-fit: cover;
-      border: 3px solid black;
     }
 
     .product-info {
@@ -256,8 +259,8 @@
 
     .added-message {
       position: absolute;
-      left: -525px;
-      top: 675px;
+      left: -37vw;
+      top: 45vw;
       font-family:"LeagueSpartan-Bold";
       font-size:24px;
       background-color: #3a2400;
@@ -270,52 +273,154 @@
       visibility: hidden;
     }
 
-.more-section {
-  padding: 20px 250px;
-}
+  .more-section {
+    padding: 0.05vw 5vw;
+  }
 
-.more-title {
-  font-family: 'LeagueSpartan-Bold';
-  font-size: 36px;
-  color: #FCDD09;
-  margin-bottom: 10px;
-  -webkit-text-stroke: 2px rgb(17, 65, 1);
-}
+  .more-title {
+    font-family: 'LeagueSpartan-Bold';
+    font-size: 36px;
+    color: #FCDD09;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 2px rgb(17, 65, 1);
+  }
 
-.more-products {
-  display: flex;
-  gap: 250px;
-}
+  .more-products {
+    display: flex;
+    gap: 250px;
+  }
 
-.more-item {
-  width: 100px;
-  height: 100px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
+  .more-item {
+    width: 100px;
+    height: 100px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
 
-.more-caption {
-  font-family: "LeagueSpartan-Bold", sans-serif;
-  font-size: 20px;
-  color: white;
-  -webkit-text-stroke: 1px rgb(17, 65, 1);
-  margin-top: 10px;
-  text-shadow: 1px 1px 2px black;
-}
+  .more-caption {
+    font-family: "LeagueSpartan-Bold", sans-serif;
+    font-size: 20px;
+    color: white;
+    -webkit-text-stroke: 1px rgb(17, 65, 1);
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px black;
+  }
 
-.more-item img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border: 2px solid black;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
+  .more-item img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid black;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
 
-.more-item img:hover {
-  transform: scale(1.05);
-}
+  .more-item img:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 390px) {
+    .product-container {
+      flex-direction: column;
+      padding: 5vw;
+      align-items: center;
+    }
+
+    .product-image, .product-info {
+      width: 90vw;
+      height: auto;
+      max-width: none;
+      padding: 5vw;
+    }
+
+    .special-requests textarea {
+      width: 80vw;
+      height: 30vw;
+    }
+
+    .add-btn {
+      margin-left: 0;
+      width: 80vw;
+      text-align: center;
+    }
+
+    .edit-remove-container {
+      margin-right: 30vw;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .edit-container,
+    .remove-container {
+      width: 80vw;
+      margin-right: 100vw;
+      margin-left: 0;
+      text-align: center;
+    }
+
+    .edit-btn,
+    .remove-btn {
+      width: auto;
+      margin: 0;
+      margin-right: 40vw;
+    }
+
+    .quantity {
+      font-size: 6vw;
+      gap: 5vw;
+      top: 0;
+    }
+
+    .confirmation-wrapper {
+      position: static;
+      margin-top: 5vw;
+      display: flex;
+      justify-content: center;
+    }
+
+    .added-message {
+      position: static;
+      font-size: 5vw;
+      margin-top: 3vw;
+      text-align: center;
+    }
+
+    .more-products {
+      flex-direction: column;
+      gap: 50vw;
+      align-items: flex-start;
+    }
+
+    .more-item img {
+      width: 60vw;
+      height: 60vw;
+    }
+
+    .more-caption {
+      font-size: 5vw;
+      text-align: left;
+      padding-left: 2vw;
+    }
+
+    .back-button {
+      margin-left: 5vw;
+      margin-top: 5vw;
+    }
+
+    .back-arrow {
+      font-size: 8vw;
+    }
+
+    .back-text {
+      font-size: 5vw;
+    }
+
+    .home-button,
+    .site-header {
+      display: none;
+    }
+  }
 
   </style>
 </head>
