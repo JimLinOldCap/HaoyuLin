@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Payment Page</title>
+  <title>Payment Page Delivery</title>
   <style>
 
     @font-face {
@@ -214,7 +214,7 @@
         I agree with all the <a href="#">conditions</a> and relative policies.
       </label>
 
-      <button class="pay-now-btn" type="submit" id="payBtn" disabled>Pay Now</button>
+      <button class="pay-now-btn" type="button" id="payBtn" disabled>Pay Now</button>
     </form>
   </div>
 
@@ -233,6 +233,11 @@
         payBtn.style.cursor = "not-allowed";
       }
     });
+
+    payBtn.addEventListener('click', function () {
+      window.location.href = "delivery confirmation.html";
+    });
+
   </script>
 
   <!-- cite footer -->

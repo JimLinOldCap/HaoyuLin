@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Confirmation</title>
+  <style>
+    @font-face {
+      font-family: 'LeagueSpartan-Bold';
+      src: url('LeagueSpartan-Bold.otf') format('truetype');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('BG2.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'LeagueSpartan-Bold', sans-serif;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 150, 0.6);
+      border: 5px solid #8b4f00;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      width: 60%;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .container h1 {
+      font-size: 48px;
+      color: #004000;
+      margin-bottom: 20px;
+      -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    .container h2 {
+      font-size: 32px;
+      color: #004000;
+      margin: 20px 0;
+    }
+
+    .container .order-number {
+      font-size: 64px;
+      color: #842201;
+      -webkit-text-stroke: 2px rgb(255, 255, 255);
+      font-weight: bold;
+      font-style:italic;
+    }
+
+    .container p {
+      font-size: 24px;
+      margin-top: 10px;
+      color: #004000;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .buttons button {
+      font-family: 'LeagueSpartan-Bold';
+      padding: 12px 24px;
+      font-size: 24px;
+      text-shadow: 2px 2px 3px #d2d2d2;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      border:3px solid black;
+      box-shadow: 2px 2px 4px #000;
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      color:rgb(239, 238, 238);
+      text-shadow: 2px 2px 3px #000000;
+      background-color: #ef720b;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .buttons .small-text {
+      font-family: 'LeagueSpartan-Bold';
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .buttons .small-text:hover {
+      color:rgb(239, 238, 238);
+      text-shadow: 2px 2px 3px #000000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="sidebar-container"></div>
+  <script>
+    fetch('side bar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('sidebar-container').innerHTML = html);
+  </script>
+
+  <div class="container">
+    <h1>Thanks for<br>Your Order!</h1>
+    <h2>The order will be arrive at</h2>
+    <div class="order-number">8:00 pm</div>
+    <p>The delivery is on the way now</p>
+    <p>                              </p>
+    <img src="map.png" alt="Delivery Map" class="map-image">
+
+    <div class="buttons">
+      <button onclick="location.href='Shopping Cart.html'">
+        Edit Order<br><span class="small-text">(Within 10:00min)</span>
+      </button>
+      <button onclick="location.href='menu.html'">Another Order</button>
+      <button onclick="location.href='index.html'">Confirm</button>
+    </div>
+  </div>
+
+  <!-- cite footer -->
+  <div id="footer-container"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
