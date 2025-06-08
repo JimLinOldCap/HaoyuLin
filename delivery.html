@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payment Page Delivery</title>
   <style>
 
@@ -13,11 +14,13 @@
     html, body {
       margin: 0;
       padding: 0;
+      
     }
 
     body {
       background-image: url('BG.png');
       background-size: cover;
+      margin-top:-1vw;
       background-repeat: no-repeat;
       background-position: top center;
     }
@@ -25,7 +28,7 @@
     .home-button {
       position:absolute;
       background-color:transparent;
-      right: 325px;
+      right: 16.93vw;
       z-index: 20;
     }
 
@@ -40,14 +43,12 @@
     }
 
     .logo {
-      width: 400px;
+      width: 325px;
       height: auto;
     }
 
     .back-button {
-      position:absolute;
-      margin-top: 10px;
-      margin-left:80px;
+      margin-left: 13.02vw;
       font-weight: bold;
       cursor: pointer;
       display: inline-block;
@@ -77,6 +78,21 @@
       margin: 40px auto;
       font-family: 'LeagueSpartan-Bold', sans-serif;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .input-full {
+      width: 100%;
+      max-width: 990px;
+    }
+
+    .input-short {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .input-medium {
+      width: 100%;
+      max-width: 300px;
     }
 
     .payment-container h2 {
@@ -148,6 +164,45 @@
       cursor: pointer;
     }
 
+    @media (max-width: 390px) {
+      .payment-container {
+        width: 90%;
+        padding: 5vw;
+      }
+
+      .payment-form label {
+        font-size: 16px;
+      }
+
+      .input-full, .input-short, .input-medium {
+        max-width: 100%;
+      }
+
+      .row {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .pay-now-btn {
+        font-size: 20px;
+        padding: 10px 20px;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .back-arrow {
+        font-size: 8vw;
+      }
+
+      .back-text {
+        font-size: 5vw;
+      }
+
+      .logo, .home-button {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -192,22 +247,22 @@
   <div class="payment-container">
     <h2>Payment Details:</h2>
     <form class="payment-form">
-      <label>Name:<br><input type="text" name="name" required style="width: 400px;"></label><br>
+      <label>Name:<br><input type="text" name="name" class="input-short" required></label><br>
 
-      <label>Phone Number:<br><input type="tel" name="phone" required style="width: 990px;"></label><br>
+      <label>Phone Number:<br><input type="tel" name="phone" class="input-full" required></label><br>
 
-      <label>Card Number:<br><input type="text" name="cardNumber" required style="width: 990px;"></label><br>
+      <label>Card Number:<br><input type="text" name="cardNumber" class="input-full" required></label><br>
 
-      <label>Name of the Card:<br><input type="text" name="cardName" required style="width: 400px;"></label><br>
+      <label>Name of the Card:<br><input type="text" name="cardName" class="input-short" required></label><br>
 
       <div class="row">
-        <label>Exp date:<br><input type="text" name="exp" placeholder="MM/YY" required style="width: 300px;"></label>
-        <label>CVV:<br><input type="text" name="cvv" required style="width: 300px;"></label>
+        <label>Exp date:<br><input type="text" name="exp" placeholder="MM/YY" class="input-medium" required></label>
+        <label>CVV:<br><input type="text" name="cvv" class="input-medium" required></label>
       </div><br>
 
-      <label>Address:<br><input type="text" name="address" required style="width: 990px;"></label><br>
+      <label>Address:<br><input type="text" name="address" class="input-full" required></label><br>
 
-      <label>Number of Cutlery:<br><input type="number" name="cutlery" min="0" style="width: 100px;"></label><br>
+      <label>Number of Cutlery:<br><input type="number" name="cutlery" min="0" class="input-medium"></label><br>
 
       <label class="checkbox">
         <input type="checkbox" id="agreeCheckbox" required>
