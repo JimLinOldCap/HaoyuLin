@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Page</title>
+  <style>
+
+    @font-face {
+      font-family: 'LeagueSpartan-Bold';
+      src: url('LeagueSpartan-Bold.otf') format('truetype');
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('BG.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+
+    .home-button {
+      position:absolute;
+      background-color:transparent;
+      right: 325px;
+      z-index: 20;
+    }
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 400px;
+      height: auto;
+    }
+
+    .back-button {
+      position:absolute;
+      margin-top: 10px;
+      margin-left:80px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .back-arrow {
+      font-family: "LeagueSpartan-Bold";
+      font-size: 60px;
+      color: #FCDD09;
+      -webkit-text-stroke: 2px rgb(17, 65, 1);
+      text-shadow: 2px 2px black;
+    }
+
+    .back-text {
+      font-family: "LeagueSpartan-Bold";
+      font-size: 36px;
+      color: rgb(237, 194, 19);
+      -webkit-text-stroke: 2px rgb(17, 65, 1);
+      text-shadow: 2px 2px black;
+    }
+
+    .payment-container {
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      width: 60%;
+      margin: 40px auto;
+      font-family: 'LeagueSpartan-Bold', sans-serif;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .payment-container h2 {
+      text-align: center;
+      font-size: 32px;
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    .payment-form label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: black;
+    }
+
+    .payment-form input[type="text"],
+    .payment-form input[type="tel"],
+    .payment-form input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+
+    .payment-form .row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .payment-form .row label {
+      flex: 1;
+    }
+
+    .checkbox {
+      font-size: 14px;
+      margin-top: 10px;
+      color: black;
+    }
+
+    .checkbox input {
+      margin-right: 5px;
+    }
+
+    .pay-now-btn {
+      font-family: 'LeagueSpartan-Bold';
+      padding: 12px 24px;
+      font-size: 24px;
+      text-shadow: 2px 2px 3px #d2d2d2;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      border:3px solid black;
+      box-shadow: 2px 2px 4px #000;
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      margin-left: auto;
+      margin-right: 0;
+      display: block;
+    }
+
+    .pay-now-btn:hover {
+      color:rgb(239, 238, 238);
+      text-shadow: 2px 2px 3px #000000;
+      background-color: #ef720b;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
+
+  <a href="index.html" class="home-button">
+    <img src="home 2.png" alt="Home" class="home-icon">
+  </a>
+
+  <!-- cite search bar and side bar -->
+  <div id="sidebar-container"></div>
+  <script>
+    fetch('side bar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('sidebar-container').innerHTML = html);
+  </script>
+
+  <div id="searchbar-container"></div>
+  <script>
+    fetch('search bar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('searchbar-container').innerHTML = html;
+
+        const input = document.getElementById('searchInput');
+        if (input) {
+          input.addEventListener('focus', () => {
+            window.location.href = 'search.html';
+          });
+        }
+      });
+  </script>
+
+  <div class="back-button" onclick="history.back()">
+    <span class="back-arrow">«</span> 
+    <span class="back-text">Back</span>
+  </div>
+
+  <div class="payment-container">
+    <h2>Payment Details:</h2>
+    <form class="payment-form">
+      <label>Name:<br><input type="text" name="name" required style="width: 400px;"></label><br>
+
+      <label>Phone Number:<br><input type="tel" name="phone" required style="width: 990px;"></label><br>
+
+      <label>Card Number:<br><input type="text" name="cardNumber" required style="width: 990px;"></label><br>
+
+      <label>Name of the Card:<br><input type="text" name="cardName" required style="width: 400px;"></label><br>
+
+      <div class="row">
+        <label>Exp date:<br><input type="text" name="exp" placeholder="MM/YY" required style="width: 300px;"></label>
+        <label>CVV:<br><input type="text" name="cvv" required style="width: 300px;"></label>
+      </div><br>
+
+      <label>Address:<br><input type="text" name="address" required style="width: 990px;"></label><br>
+
+      <label>Number of Cutlery:<br><input type="number" name="cutlery" min="0" style="width: 100px;"></label><br>
+
+      <label class="checkbox">
+        <input type="checkbox" id="agreeCheckbox" required>
+        I agree with all the <a href="#">conditions</a> and relative policies.
+      </label>
+
+      <button class="pay-now-btn" type="submit" id="payBtn" disabled>Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById('agreeCheckbox');
+    const payBtn = document.getElementById('payBtn');
+
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        payBtn.disabled = false;
+        payBtn.style.opacity = "1";
+        payBtn.style.cursor = "pointer";
+      } else {
+        payBtn.disabled = true;
+        payBtn.style.opacity = "0.6";
+        payBtn.style.cursor = "not-allowed";
+      }
+    });
+  </script>
+
+  <!-- cite footer -->
+  <div id="footer-container"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      });
+  </script> 
+
+</body>
+</html>

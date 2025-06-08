@@ -204,6 +204,14 @@
       cursor: pointer;
     }
 
+    .checkout-button.disabled {
+      background-color: #ccc !important;
+      color: #666;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
     .checkout-button {
       font-family: 'LeagueSpartan-Bold';
       padding: 12px 24px;
@@ -281,7 +289,7 @@
         <label><input type="radio" name="method" value="delivery" checked> Delivery</label>
         <label><input type="radio" name="method" value="dinein"> Dine In</label>
       </div>
-      <button class="checkout-button">Check Out</button>
+      <button class="checkout-button" id="checkoutBtn">Check Out</button>
     </div>
   </div>
 
@@ -302,6 +310,16 @@
       } else {
         emptyMessage.style.display = "none";
         totalPriceElem.style.display = "block";
+      }
+
+      // banned check out when there is no product in cart
+      const checkoutBtn = document.getElementById("checkoutBtn");
+      if (cart.length === 0) {
+        checkoutBtn.disabled = true;
+        checkoutBtn.classList.add("disabled");
+      } else {
+        checkoutBtn.disabled = false;
+        checkoutBtn.classList.remove("disabled");
       }
 
       cart.forEach(item => {
@@ -356,6 +374,7 @@
 
     window.onload = loadCart;
 
+    // edit product
     function editItem(id) {
       if (id === 'qeywat') {
         window.location.href = 'Qey Wat.html';
@@ -363,6 +382,21 @@
         window.location.href = 'Qulett.html';
       }
     }
+
+    
+    // check out respectively
+    document.getElementById("checkoutBtn").addEventListener("click", function () {
+      const selected = document.querySelector('input[name="method"]:checked');
+      if (!selected) return;
+
+      const method = selected.value;
+
+      if (method === "delivery") {
+        window.location.href = "delivery.html";
+      } else if (method === "dinein") {
+        window.location.href = "dine in.html";
+      }
+    });
 
     // footer's link
     window.onload = function () {
