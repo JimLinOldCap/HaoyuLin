@@ -65,62 +65,121 @@
 
     .cart-container {
       max-width: 800px;
-      margin: 80px auto;
+      margin: 60px auto;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 12px;
       padding: 30px;
     }
 
+    .cart-container h2 {
+      font-size: 48px;
+      font-family: 'LeagueSpartan-Bold';
+      color: #e5bb00;
+      -webkit-text-stroke: 2px rgb(220, 124, 7);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
     .cart-item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 20px;
       padding: 15px;
-      background: #fff;
+      background: rgba(135, 233, 82, 0.5);
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .cart-item img {
-      width: 100px;
-      height: 100px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
       border-radius: 8px;
       margin-right: 20px;
     }
 
-    .item-info {
-      flex-grow: 1;
+    .item-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: 'LeagueSpartan-Bold';
+      padding-left: 10px;
     }
 
-    .item-info h3 {
+    .item-center h3 {
       margin: 0 0 10px;
+      font-size: 48px;
+      color:#67d851;
+      -webkit-text-stroke: 2px rgb(26, 50, 4);
     }
 
-    .quantity-control {
+    .item-center p {
+      margin: 5px;
+      font-size: 20px;
+      color: #ee8b0bb8;
+      -webkit-text-stroke: 1px rgb(50, 22, 4);
+    }
+
+    .quantity-control{
+      position: relative;
+      font-family:"LeagueSpartan-Bold";
+      color:black;
+      background-color:white;
+      border:5px solid black;
+      width: fit-content;
+      justify-content: center;
       display: flex;
       align-items: center;
-      margin-top: 10px;
+      font-size:18px;
+      gap: 15px;
+      margin: 10px 0;
     }
 
     .quantity-control button {
+      font-family: monospace;
+      background-color:rgb(0, 114, 0);
+      color:white;
+      font-size: 28px;
+      font-weight:bold;
       padding: 5px 10px;
+    }
+
+    .edit-button {
+      font-family: 'LeagueSpartan-Bold';
+      background: none;
+      border: none;
+      color: #ff7300;
+      cursor: pointer;
       font-size: 18px;
-      margin: 0 5px;
+      margin-top: 5px;
+      text-decoration: underline;
+    }
+
+    .edit-button:hover {
+      color: #b36301;
     }
 
     .remove-button {
+      font-family: 'LeagueSpartan-Bold';
       background: none;
       border: none;
       color: red;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 18px;
       margin-top: 10px;
+      text-decoration:underline;
+    }
+
+    .remove-button:hover {
+      color: #7e0202;
     }
 
     .total {
+      font-family: 'LeagueSpartan-Bold';
       text-align: right;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: bold;
       margin-top: 20px;
     }
@@ -133,23 +192,39 @@
     }
 
     .checkout-area .delivery-options label {
-      margin-right: 20px;
-      font-size: 16px;
+      font-family: 'LeagueSpartan-Bold';
+      margin-right: 40px;
+      font-size: 30px;
+    }
+
+    .checkout-area .delivery-options input[type="radio"] {
+      width: 30px;
+      height: 30px;
+      accent-color: #007200;
+      cursor: pointer;
     }
 
     .checkout-button {
+      font-family: 'LeagueSpartan-Bold';
       padding: 12px 24px;
-      font-size: 18px;
+      font-size: 24px;
+      text-shadow: 2px 2px 3px #d2d2d2;
       background-color: #FFD700;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      border:3px solid black;
       box-shadow: 2px 2px 4px #000;
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .checkout-button:hover {
-      background-color: #f0c100;
+      color:rgb(239, 238, 238);
+      text-shadow: 2px 2px 3px #000000;
+      background-color: #ef720b;
+      transform: scale(1.1);
+      cursor: pointer;
     }
   </style>
 </head>
@@ -236,15 +311,20 @@
         itemDiv.className = "cart-item";
         itemDiv.innerHTML = `
           <img src="${item.img}" alt="${item.name}">
-          <div class="item-info">
+          
+          <div class="item-center">
             <h3>${item.name}</h3>
             <p>AUD$${item.price}</p>
+          </div>
+
+          <div class="item-right">
             <div class="quantity-control">
               <button onclick="changeQuantity('${item.id}', -1)">-</button>
               <span>${item.quantity}</span>
               <button onclick="changeQuantity('${item.id}', 1)">+</button>
             </div>
             <button class="remove-button" onclick="removeItem('${item.id}')">Remove</button>
+            <button class="edit-button" onclick="editItem('${item.id}')">Edit</button>
           </div>
         `;
         cartContainer.appendChild(itemDiv);
@@ -275,6 +355,31 @@
     }
 
     window.onload = loadCart;
+
+    function editItem(id) {
+      if (id === 'qeywat') {
+        window.location.href = 'Qey Wat.html';
+      } else if (id === 'qulett') {
+        window.location.href = 'Qulett.html';
+      }
+    }
+
+    // footer's link
+    window.onload = function () {
+      loadCart();
+
+      const params = new URLSearchParams(window.location.search);
+      const method = params.get("method");
+
+      if (method === "delivery" || method === "dinein") {
+        const selector = `input[name="method"][value="${method}"]`;
+        const radio = document.querySelector(selector);
+        if (radio) {
+          radio.checked = true;
+        }
+      }
+    };
+
   </script>
 
   <!-- cite footer -->
